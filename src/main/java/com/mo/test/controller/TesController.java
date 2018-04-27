@@ -1,6 +1,7 @@
 package com.mo.test.controller;
 
 import com.mo.test.entity.Order;
+import com.mo.test.entity.OrderExample;
 import com.mo.test.entity.OrderItem;
 import com.mo.test.mapper.OrderItemMapper;
 import com.mo.test.mapper.OrderMapper;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -43,6 +45,12 @@ public class TesController {
 
 
         return order.getId()+"";
+    }
+
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    public List<Order> select() {
+
+        return orderMapper.selectByExample(new OrderExample());
     }
 
     public String getCode(int length) {

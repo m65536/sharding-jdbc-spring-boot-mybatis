@@ -16,6 +16,7 @@ CREATE SCHEMA IF NOT EXISTS demo_ds_master_1_slave_1;
 
 
 CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_0 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+          `sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -98,6 +99,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_0 (`id` bigint(20)  not null
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_1 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -180,6 +182,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_1 (`id` bigint(20)  not null
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_0 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -262,6 +265,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_0 (`id` bigint(20)  not null
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_1 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -345,6 +349,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_1 (`id` bigint(20)  not null
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 
 CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_item_0 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -389,6 +394,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_item_0 (id bigint auto_incre
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_item_1 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -433,6 +439,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0.t_order_item_1 (id bigint auto_incre
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_item_0 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -477,6 +484,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_item_0 (id bigint auto_incre
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_item_1 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -523,6 +531,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1.t_order_item_1 (id bigint auto_incre
 
 
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_0 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -605,6 +614,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_0 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_1 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -687,6 +697,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_1 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_0 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -769,6 +780,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_0 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_1 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -851,6 +863,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_1 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_0 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -933,6 +946,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_0 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_1 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -1015,6 +1029,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_1 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_0 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -1097,6 +1112,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_0 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_1 (`id` bigint(20)  not null AUTO_INCREMENT COMMENT '主键，自增长，步长＝1',
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
           `channel` bigint(20) DEFAULT NULL COMMENT '渠道号标识（线上或者线下）',
           `plantform` bigint(20) DEFAULT NULL COMMENT '平台标识 1：B端PC，2：B端App，3：C端App',
           `client` bigint(20) DEFAULT NULL COMMENT '客户端标示 1：商户开单pc客户端，2：商户开单app客户端，',
@@ -1179,6 +1195,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_1 (`id` bigint(20)  
           KEY `idx_agreed_delivery_date` (`agreed_delivery_date`),
           KEY `idx_status_create_date` (`create_date`,`order_status`));
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_item_0 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1223,6 +1240,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_item_0 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_item_1 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1267,6 +1285,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_0.t_order_item_1 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_item_0 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1311,6 +1330,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_item_0 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_item_1 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1355,6 +1375,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_0_slave_1.t_order_item_1 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_item_0 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1399,6 +1420,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_item_0 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_item_1 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1443,6 +1465,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_0.t_order_item_1 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_item_0 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
@@ -1487,6 +1510,7 @@ CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_item_0 (id bigint au
               sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
               unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是');
 CREATE TABLE IF NOT EXISTS demo_ds_master_1_slave_1.t_order_item_1 (id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+`sharding_key` varchar(64) not null COMMENT 'sharding_key',
               order_id bigint null comment '外键，关联到tx_order.id',
               merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
               merchant_name varchar(255) null comment '商户名称，从商户系统获取',
