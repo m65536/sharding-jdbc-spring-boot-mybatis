@@ -34,13 +34,13 @@
 
 
     <sharding:standard-strategy id="databaseShardingStrategy" sharding-column="id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloDatabaseShardingAlgorithm"/>
-    <sharding:standard-strategy id="tableShardingStrategy" sharding-column="order_id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloTableShardingAlgorithm"/>
+    <sharding:standard-strategy id="tableShardingStrategy" sharding-column="id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloTableShardingAlgorithm"/>
 
     <sharding:data-source id="shardingDataSource">
         <sharding:sharding-rule data-source-names="demo_ds_master_0, demo_ds_master_1">
             <sharding:table-rules>
-                <sharding:table-rule logic-table="t_order" actual-data-nodes="demo_ds_master_${0..1}.t_order_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
-                <sharding:table-rule logic-table="t_order_item" actual-data-nodes="demo_ds_master_${0..1}.t_order_item_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="order_id" />
+                <sharding:table-rule logic-table="t_order" actual-data-nodes="demo_ds_master_${0..1}.t_order_${0..1}" database-strategy-ref="databaseShardingStrategy"  table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
+                <sharding:table-rule logic-table="t_order_item" actual-data-nodes="demo_ds_master_${0..1}.t_order_item_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
             </sharding:table-rules>
         </sharding:sharding-rule>
     </sharding:data-source>

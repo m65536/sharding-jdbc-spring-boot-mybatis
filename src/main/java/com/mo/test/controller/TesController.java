@@ -35,11 +35,12 @@ public class TesController {
 
         orderMapper.insert(order);
 
-    /*    OrderItem orderItem = new OrderItem();
+       OrderItem orderItem = new OrderItem();
         orderItem.setOrderId(order.getId());
         orderItem.setProductName(UUID.randomUUID().toString());
         orderItemMapper.insert(orderItem);
-*/
+
+
         return order.getId()+"";
     }
 }
