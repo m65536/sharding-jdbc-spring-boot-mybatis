@@ -155,7 +155,7 @@
 
 
     <insert id="insert" parameterType="com.mo.test.entity.OrderItem" useGeneratedKeys="true" keyProperty="id" >
-    insert into t_order_item ( sharding_key, order_id,
+    insert into t_order_item (sharding_key, order_id,
       merchant_id, merchant_name, product_id,
       product_name, brand_id, brand_name,
       img_url, order_item_type, unit_id,
@@ -171,7 +171,7 @@
       review_status, review_date, review_id,
       goods_type, sale_channel, unit_is_show
       )
-    values ( #{shardingKey,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT},
+    values (#{shardingKey,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT},
       #{merchantId,jdbcType=VARCHAR}, #{merchantName,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR},
       #{productName,jdbcType=VARCHAR}, #{brandId,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR},
       #{imgUrl,jdbcType=VARCHAR}, #{orderItemType,jdbcType=INTEGER}, #{unitId,jdbcType=VARCHAR},
