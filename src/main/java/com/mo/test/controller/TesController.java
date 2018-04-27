@@ -3,12 +3,14 @@ package com.mo.test.controller;
 import com.mo.test.entity.Order;
 import com.mo.test.entity.OrderExample;
 import com.mo.test.entity.OrderItem;
+import com.mo.test.entity.OrderItemExample;
 import com.mo.test.mapper.OrderItemMapper;
 import com.mo.test.mapper.OrderMapper;
 import com.mo.test.service.impl.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -37,7 +39,7 @@ public class TesController {
         order.setSerialNumber(UUID.randomUUID().toString());
         order.setMarketId(getCode(6));
         order.setShopId(getCode(6));
-        order.setShardingKey(order.getMarketId()+"-"+order.getShopId());
+        order.setShardingKey(order.getMarketId() + "-" + order.getShopId());
         orderMapper.insert(order);
 
         OrderItem orderItem = new OrderItem();
@@ -50,10 +52,18 @@ public class TesController {
         return order.getId() + "";
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
-    public List<Order> select() {
+    @RequestMapping(value = "/select/order", method = RequestMethod.GET)
+    public List<Order> selectOrder(@RequestParam(value = "id") Long id) {
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andIdEqualTo(id);
+        return orderMapper.selectByExample(orderExample);
+    }
 
-        return orderMapper.selectByExample(new OrderExample());
+    @RequestMapping(value = "/select/item", method = RequestMethod.GET)
+    public List<OrderItem> selectOrderItem(@RequestParam(value = "id") Long id) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.createCriteria().andIdEqualTo(id);
+        return orderItemMapper.selectByExample(orderItemExample);
     }
 
     public String getCode(int length) {
