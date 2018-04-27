@@ -40,6 +40,6 @@ public class TesController {
         orderItem.setProductName(UUID.randomUUID().toString());
         orderItemMapper.insert(orderItem);
 */
-        return "OK";
+        return order.getId()+"";
     }
 }
