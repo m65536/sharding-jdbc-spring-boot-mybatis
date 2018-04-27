@@ -14,6 +14,8 @@
                         http://shardingjdbc.io/schema/shardingjdbc/sharding/sharding.xsd">
     <context:component-scan base-package="com.mo.test" />
 
+    <context:property-placeholder location="classpath:spring" ignore-unresolvable="true" />
+
 
 
     <bean id="demo_ds_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -29,6 +31,7 @@
         <property name="username" value="root"/>
         <property name="password" value="password"/>
     </bean>
+
 
     <sharding:standard-strategy id="databaseShardingStrategy" sharding-column="user_id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloDatabaseShardingAlgorithm"/>
     <sharding:standard-strategy id="tableShardingStrategy" sharding-column="order_id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloTableShardingAlgorithm"/>
