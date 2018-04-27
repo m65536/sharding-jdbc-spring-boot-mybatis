@@ -39,7 +39,7 @@ public class TesController {
         orderMapper.insert(order);
 
         OrderItem orderItem = new OrderItem();
-        orderItem.setShardingKey(order.getShardingKey());
+        orderItem.setShardingKey(order.getId().longValue() + "");
         orderItem.setOrderId(order.getId());
         orderItem.setProductName(UUID.randomUUID().toString());
         orderItemMapper.insert(orderItem);
