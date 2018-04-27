@@ -274,7 +274,7 @@
       </if>
     </delete>
     <insert id="insert" parameterType="com.mo.test.entity.Order" useGeneratedKeys="true" keyProperty="id" >
-    insert into t_order (id, channel, plantform, 
+    insert into t_order ( channel, plantform,
       client, serial_number, order_status, 
       order_type, market_id, market_name, 
       shop_id, shop_name, total_amount, 
@@ -299,7 +299,7 @@
       oms_uuid, review_date, review_id, 
       return_visit_status, extend_status, extend_type
       )
-    values (#{id,jdbcType=BIGINT}, #{channel,jdbcType=BIGINT}, #{plantform,jdbcType=BIGINT}, 
+    values ( #{channel,jdbcType=BIGINT}, #{plantform,jdbcType=BIGINT},
       #{client,jdbcType=BIGINT}, #{serialNumber,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
       #{orderType,jdbcType=INTEGER}, #{marketId,jdbcType=VARCHAR}, #{marketName,jdbcType=VARCHAR}, 
       #{shopId,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DECIMAL}, 
