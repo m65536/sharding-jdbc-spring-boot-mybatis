@@ -33,7 +33,7 @@
     </bean>
 
 
-    <sharding:standard-strategy id="databaseShardingStrategy" sharding-column="user_id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloDatabaseShardingAlgorithm"/>
+    <sharding:standard-strategy id="databaseShardingStrategy" sharding-column="id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloDatabaseShardingAlgorithm"/>
     <sharding:standard-strategy id="tableShardingStrategy" sharding-column="order_id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloTableShardingAlgorithm"/>
 
     <sharding:data-source id="shardingDataSource">
