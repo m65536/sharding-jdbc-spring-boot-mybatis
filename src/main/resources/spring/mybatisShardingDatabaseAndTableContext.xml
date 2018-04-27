@@ -18,16 +18,16 @@
 
 
 
-    <bean id="demo_ds_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="demo_ds_master_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/demo_ds_0"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/demo_ds_master_0"/>
         <property name="username" value="root"/>
         <property name="password" value="password"/>
     </bean>
 
-    <bean id="demo_ds_1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="demo_ds_master_1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/demo_ds_1"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/demo_ds_master_1"/>
         <property name="username" value="root"/>
         <property name="password" value="password"/>
     </bean>
@@ -37,10 +37,10 @@
     <sharding:standard-strategy id="tableShardingStrategy" sharding-column="order_id" precise-algorithm-class="com.mo.test.sharding.PreciseModuloTableShardingAlgorithm"/>
 
     <sharding:data-source id="shardingDataSource">
-        <sharding:sharding-rule data-source-names="demo_ds_0, demo_ds_1">
+        <sharding:sharding-rule data-source-names="demo_ds_master_0, demo_ds_master_1">
             <sharding:table-rules>
-                <sharding:table-rule logic-table="t_order" actual-data-nodes="demo_ds_${0..1}.t_order_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="order_id" />
-                <sharding:table-rule logic-table="t_order_item" actual-data-nodes="demo_ds_${0..1}.t_order_item_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="order_item_id" />
+                <sharding:table-rule logic-table="t_order" actual-data-nodes="demo_ds_master_${0..1}.t_order_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="order_id" />
+                <sharding:table-rule logic-table="t_order_item" actual-data-nodes="demo_ds_master_${0..1}.t_order_item_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="order_item_id" />
             </sharding:table-rules>
         </sharding:sharding-rule>
     </sharding:data-source>
