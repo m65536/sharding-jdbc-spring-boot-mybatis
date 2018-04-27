@@ -1,6 +1,6 @@
 package com.mo.test.controller;
 
-import com.mo.test.service.TestService;
+import com.mo.test.service.impl.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TesController {
 
     @Autowired
-    private TestService testService;
+    private OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String test(){
