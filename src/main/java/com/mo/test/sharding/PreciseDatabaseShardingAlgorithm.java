@@ -26,11 +26,12 @@ import java.util.Collection;
  * 精确的数据路由
  */
 public final class PreciseDatabaseShardingAlgorithm implements PreciseShardingAlgorithm<String> {
-    
+
     @Override
     public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<String> shardingValue) {
+        Long decideKey = Long.valueOf(shardingValue.getValue().split("-")[0]);
         for (String each : availableTargetNames) {
-            if (each.endsWith(Long.valueOf(shardingValue.getValue()) % 2 + "")) {
+            if (each.endsWith(decideKey % 2 + "")) {
                 return each;
             }
         }

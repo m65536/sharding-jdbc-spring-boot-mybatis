@@ -29,8 +29,10 @@ public final class PreciseTableShardingAlgorithm implements PreciseShardingAlgor
 
     @Override
     public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<String> shardingValue) {
+        Long decideKey = Long.valueOf(shardingValue.getValue().split("-")[1]);
+
         for (String each : availableTargetNames) {
-            if (each.endsWith(Long.valueOf(shardingValue.getValue()) % 2 + "")) {
+            if (each.endsWith(decideKey % 2 + "")) {
                 return each;
             }
         }

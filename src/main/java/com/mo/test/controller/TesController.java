@@ -35,11 +35,13 @@ public class TesController {
         Order order = new Order();
         order.setCreateDate(new Date());
         order.setSerialNumber(UUID.randomUUID().toString());
-        order.setShardingKey(getCode(6));
+        order.setMarketId(getCode(6));
+        order.setShopId(getCode(6));
+        order.setShardingKey(order.getMarketId()+"-"+order.getShopId());
         orderMapper.insert(order);
 
         OrderItem orderItem = new OrderItem();
-        orderItem.setShardingKey(order.getId().longValue() + "");
+        orderItem.setShardingKey(order.getShardingKey());
         orderItem.setOrderId(order.getId());
         orderItem.setProductName(UUID.randomUUID().toString());
         orderItemMapper.insert(orderItem);
