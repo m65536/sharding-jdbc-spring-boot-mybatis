@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -32,7 +33,7 @@ public class TesController {
         Order order = new Order();
         order.setCreateDate(new Date());
         order.setSerialNumber(UUID.randomUUID().toString());
-
+        order.setMarketId(getCode(6));
         orderMapper.insert(order);
 
        OrderItem orderItem = new OrderItem();
@@ -42,5 +43,14 @@ public class TesController {
 
 
         return order.getId()+"";
+    }
+
+    public String getCode(int length) {
+        Random random = new Random();
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            result.append(random.nextInt(10));
+        }
+        return result.toString();
     }
 }
