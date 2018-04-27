@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mo.test.mapper.OrderItemMapper">
+    <update id="createIfNotExistsTable">
+        create table t_order_item(
+              id bigint auto_increment comment '主键，自增长，步长＝1' primary key,
+              order_id bigint not null comment '外键，关联到tx_order.id',
+              merchant_id varchar(255) null comment '商户唯一标示符，从商户系统中获取商户信息',
+              merchant_name varchar(255) null comment '商户名称，从商户系统获取',
+              product_id varchar(255) null comment '产品id，从产品系统中获取产品信息',
+              product_name varchar(255) not null comment '产品名称，从产品系统中获取',
+              brand_id varchar(255) null comment '品牌id，从商品库获取',
+              brand_name varchar(255) null comment '名牌名称，从商品库获取',
+              img_url varchar(500) null comment '商品圖片路徑',
+              order_item_type int null comment '商品类型，从商品库获取，（买券类型：3.购买券，4.抵用券）',
+              unit_id varchar(255) null comment '商品单位id，从商品库获取',
+              unit_name varchar(255) null comment '商品单位名称，从商品库获取',
+              unit_price decimal(19,2) not null comment '商品单价，从定价库获取',
+              sale_price decimal(19,2) not null comment '商品销售价格，从定价系统获取',
+              paid_amount decimal(19,2) default '0.00' null comment '分摊到商品已付金额',
+              share_rate decimal(19,8) default '0.00000000' null comment '(真实售价*数量-此商品b端总促销)/（订单总商品售价-b端订单总促销金额）',
+              total_amount decimal(19,2) not null comment '单项商品购买总价',
+              inventory_id varchar(255) null comment '库存id，从商品库获取',
+              quantity decimal(19,2) not null comment '购买数量',
+              real_quantity decimal(19,2) null comment '真实数量（= 总数量 - 已退数量）',
+              create_date datetime not null comment '创建时间',
+              delete_flag tinyint(1) not null,
+              signed_code varchar(255) null comment '价签码(龙果提供)sku_id',
+              model varchar(255) null comment '型号（龙果）',
+              size varchar(255) null comment '规格（龙果）没有就反斜杠',
+              size_unit varchar(255) null comment '规格单位（龙果）',
+              discount_rate decimal(5,2) null comment '折扣率',
+              is_blatantly tinyint(1) null comment '1：明码实价，2：明码议价',
+              serial_code varchar(255) null comment '系列编码，龙果提供',
+              serial_name varchar(255) null comment '系列名称，龙果提供',
+              description varchar(500) null comment '商品描述说明',
+              can_refund tinyint(1) null comment '是否可退',
+              color varchar(255) null comment '颜色',
+              color_rgb varchar(255) null comment '颜色编码',
+              oms_price_tag_code varchar(255) null comment 'oms价签码',
+              sku varchar(255) null comment '商品sku',
+              is_service tinyint(1) default '0' null comment '是否是服务费 0：不是，1：是',
+              reference_item_id bigint null comment '原单商品id',
+              review_status int null comment '评价状态',
+              review_date datetime null comment '评价时间',
+              review_id varchar(50) null comment '对应评价系统的评价id',
+              goods_type tinyint(1) default '0' null comment '商品类型：0店铺商品；1：自采商品',
+              sale_channel tinyint(1) default '0' null comment '纯线上销售：0否；1：是',
+              unit_is_show tinyint(1) default '0' null comment '计价单位是否显示：0否；1：是'
+            )engine=InnoDB charset=utf8
+    </update>
+
+    <update id="truncateTable">
+        TRUNCATE TABLE t_order_item;
+    </update>
+
+    <update id="dropTable">
+        DROP TABLE IF EXISTS t_order_item;
+    </update>
 
 </mapper>

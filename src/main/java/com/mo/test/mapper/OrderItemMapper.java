@@ -18,22 +18,12 @@
 package com.mo.test.mapper;
 
 
-import com.mo.test.entity.Order;
-import com.mo.test.entity.OrderItem;
-
-import java.util.List;
-
 public interface OrderItemMapper {
 
     void createIfNotExistsTable();
 
     void truncateTable();
 
-    Long insert(OrderItem model);
-
-    void delete(Long orderItemId);
-
     void dropTable();
 
-    List<Order> selectAll();
 }
