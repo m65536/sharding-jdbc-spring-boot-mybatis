@@ -5,6 +5,11 @@ import java.util.Date;
 
 public class Order {
     /**
+     * sharding_key
+     */
+    private String shardingKey;
+
+    /**
      * 主键，自增长，步长＝1
      */
     private Long id;
@@ -1464,6 +1469,14 @@ public class Order {
      */
     public Boolean getExtendType() {
         return extendType;
+    }
+
+    public String getShardingKey() {
+        return shardingKey;
+    }
+
+    public void setShardingKey(String shardingKey) {
+        this.shardingKey = shardingKey;
     }
 
     /**

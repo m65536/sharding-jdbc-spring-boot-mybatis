@@ -7,11 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface OrderItemMapper {
-    void createIfNotExistsTable();
-
-    void truncateTable();
-
-    void dropTable();
 
     int countByExample(OrderItemExample example);
 

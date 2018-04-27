@@ -10,6 +10,11 @@ public class OrderItem {
     private Long id;
 
     /**
+     * sharding_key
+     */
+    private String shardingKey;
+
+    /**
      * 外键，关联到tx_order.id
      */
     private Long orderId;
@@ -926,5 +931,13 @@ public class OrderItem {
      */
     public void setUnitIsShow(Boolean unitIsShow) {
         this.unitIsShow = unitIsShow;
+    }
+
+    public String getShardingKey() {
+        return shardingKey;
+    }
+
+    public void setShardingKey(String shardingKey) {
+        this.shardingKey = shardingKey;
     }
 }

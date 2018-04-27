@@ -7,17 +7,17 @@ import java.util.List;
 
 public class OrderItemExample {
     /**
-     * t_order_item
+     * t_order_item_0
      */
     protected String orderByClause;
 
     /**
-     * t_order_item
+     * t_order_item_0
      */
     protected boolean distinct;
 
     /**
-     * t_order_item
+     * t_order_item_0
      */
     protected List<Criteria> oredCriteria;
 
@@ -75,7 +75,7 @@ public class OrderItemExample {
     }
 
     /**
-     * t_order_item 2018-04-27
+     * t_order_item_0 2018-04-27
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -175,6 +175,76 @@ public class OrderItemExample {
 
         public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyIsNull() {
+            addCriterion("sharding_key is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyIsNotNull() {
+            addCriterion("sharding_key is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyEqualTo(String value) {
+            addCriterion("sharding_key =", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyNotEqualTo(String value) {
+            addCriterion("sharding_key <>", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyGreaterThan(String value) {
+            addCriterion("sharding_key >", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyGreaterThanOrEqualTo(String value) {
+            addCriterion("sharding_key >=", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyLessThan(String value) {
+            addCriterion("sharding_key <", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyLessThanOrEqualTo(String value) {
+            addCriterion("sharding_key <=", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyLike(String value) {
+            addCriterion("sharding_key like", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyNotLike(String value) {
+            addCriterion("sharding_key not like", value, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyIn(List<String> values) {
+            addCriterion("sharding_key in", values, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyNotIn(List<String> values) {
+            addCriterion("sharding_key not in", values, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyBetween(String value1, String value2) {
+            addCriterion("sharding_key between", value1, value2, "shardingKey");
+            return (Criteria) this;
+        }
+
+        public Criteria andShardingKeyNotBetween(String value1, String value2) {
+            addCriterion("sharding_key not between", value1, value2, "shardingKey");
             return (Criteria) this;
         }
 
@@ -2980,7 +3050,7 @@ public class OrderItemExample {
     }
 
     /**
-     * t_order_item
+     * t_order_item_0
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -2990,7 +3060,7 @@ public class OrderItemExample {
     }
 
     /**
-     * t_order_item 2018-04-27
+     * t_order_item_0 2018-04-27
      */
     public static class Criterion {
         private String condition;

@@ -22,12 +22,12 @@ import io.shardingjdbc.core.api.algorithm.sharding.standard.PreciseShardingAlgor
 
 import java.util.Collection;
 
-public final class PreciseModuloTableShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
-    
+public final class PreciseModuloTableShardingAlgorithm implements PreciseShardingAlgorithm<String> {
+
     @Override
-    public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<Long> shardingValue) {
+    public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<String> shardingValue) {
         for (String each : availableTargetNames) {
-            if (each.endsWith(shardingValue.getValue() % 2 + "")) {
+            if (each.endsWith(Integer.valueOf(shardingValue.getValue()) % 2 + "")) {
                 return each;
             }
         }

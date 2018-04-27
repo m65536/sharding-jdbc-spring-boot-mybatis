@@ -35,16 +35,17 @@ public class TesController {
         Order order = new Order();
         order.setCreateDate(new Date());
         order.setSerialNumber(UUID.randomUUID().toString());
-        order.setMarketId(getCode(6));
+        order.setShardingKey(getCode(6));
         orderMapper.insert(order);
 
-       OrderItem orderItem = new OrderItem();
+        OrderItem orderItem = new OrderItem();
+        order.setShardingKey(order.getShardingKey());
         orderItem.setOrderId(order.getId());
         orderItem.setProductName(UUID.randomUUID().toString());
         orderItemMapper.insert(orderItem);
 
 
-        return order.getId()+"";
+        return order.getId() + "";
     }
 
     @RequestMapping(value = "/select", method = RequestMethod.GET)

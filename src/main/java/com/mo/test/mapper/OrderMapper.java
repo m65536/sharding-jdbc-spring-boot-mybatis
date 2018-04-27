@@ -8,12 +8,6 @@ import java.util.List;
 
 public interface OrderMapper {
 
-    void createIfNotExistsTable();
-
-    void truncateTable();
-
-    void dropTable();
-
     int countByExample(OrderExample example);
 
     int deleteByExample(OrderExample example);
