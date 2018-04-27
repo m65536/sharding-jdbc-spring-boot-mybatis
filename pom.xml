@@ -171,11 +171,6 @@
         <!-- import sharding-jdbc core -->
         <dependency>
             <groupId>io.shardingjdbc</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
-            <version>${latest.release.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.shardingjdbc</groupId>
             <artifactId>sharding-jdbc-core-spring-namespace</artifactId>
             <version>${latest.release.version}</version>
         </dependency>
