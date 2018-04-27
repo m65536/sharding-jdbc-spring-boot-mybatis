@@ -22,10 +22,9 @@ public class TesController {
     @Autowired
     private OrderItemMapper orderItemMapper;
 
-    @RequestMapping(value = "/init", method = RequestMethod.GET)
-    public String inittable() {
-        orderMapper.createIfNotExistsTable();
-        orderItemMapper.createIfNotExistsTable();
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    public String insert() {
+
 
         return "";
     }
