@@ -31,7 +31,9 @@ public final class PreciseDatabaseShardingAlgorithm implements PreciseShardingAl
     public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<String> shardingValue) {
         Long decideKey = Long.valueOf(shardingValue.getValue().split("-")[0]);
         for (String each : availableTargetNames) {
-            if (each.endsWith(decideKey % 2 + "")) {
+            if (decideKey < 483 && each.equals("0")) {
+                return each;
+            } else if (decideKey >= 483 && each.equals("1")) {
                 return each;
             }
         }

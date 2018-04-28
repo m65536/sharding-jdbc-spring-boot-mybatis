@@ -67,7 +67,33 @@
                 <sharding:table-rule logic-table="tx_customer_service_status_version" actual-data-nodes="tx_order_master_0.tx_customer_service_status_version" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
             </sharding:table-rules>
             <sharding:binding-table-rules>
-                <sharding:binding-table-rule logic-tables="t_order, t_order_item" />
+                <sharding:binding-table-rule logic-tables="
+                    tx_customer_service
+                    ,tx_item_payment
+                    ,tx_item_promotion
+                    ,tx_operation_history
+                    ,tx_order
+                    ,tx_order_addition
+                    ,tx_order_extend
+                    ,tx_order_item
+                    ,tx_order_reviewed
+                    ,tx_order_status_version
+                    ,tx_order_worker
+                    ,tx_payment_line
+                    ,tx_payment_line_detail
+                    ,tx_promotion
+                    ,tx_promotion_job
+                    ,tx_refund_bill
+                    ,tx_attachment
+                    ,tx_cancel_payment_log
+                    ,tx_config
+                    ,tx_return_detail
+                    ,tx_return_info
+                    ,tx_item_attributes
+                    ,tx_customer_service_status_version
+
+
+                " />
             </sharding:binding-table-rules>
         </sharding:sharding-rule>
         <sharding:props>
