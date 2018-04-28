@@ -59,6 +59,14 @@ public class TesController {
         return orderMapper.selectByExample(orderExample);
     }
 
+
+    @RequestMapping(value = "/select/order/shardingKey", method = RequestMethod.GET)
+    public List<Order> selectOrderByShardingKey(@RequestParam(value = "shardingKey") String shardingKey) {
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andShardingKeyEqualTo(shardingKey);
+        return orderMapper.selectByExample(orderExample);
+    }
+
     @RequestMapping(value = "/select/item", method = RequestMethod.GET)
     public List<OrderItem> selectOrderItem(@RequestParam(value = "id") Long id) {
         OrderItemExample orderItemExample = new OrderItemExample();
