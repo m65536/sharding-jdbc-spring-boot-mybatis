@@ -41,7 +41,7 @@
     <sharding:data-source id="shardingDataSource">
         <sharding:sharding-rule data-source-names="tx_order_master_0,tx_order_master_1" default-data-source-name="tx_order_master_0">
             <sharding:table-rules>
-                <sharding:table-rule logic-table="tx_order" actual-data-nodes="tx_order_master_${0..1}.tx_order_${0..1}" database-strategy-ref="databaseShardingStrategy"  table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
+                <sharding:table-rule logic-table="tx_order" actual-data-nodes="tx_order_master_${0..1}.tx_order_${0..1}" database-strategy-ref="databaseShardingStrategy"  table-strategy-ref="tableShardingStrategy" />
                 <sharding:table-rule logic-table="tx_order_item" actual-data-nodes="tx_order_master_${0..1}.tx_order_item_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
                 <sharding:table-rule logic-table="tx_customer_service" actual-data-nodes="tx_order_master_${0..1}.tx_customer_service_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
                 <sharding:table-rule logic-table="tx_item_payment" actual-data-nodes="tx_order_master_${0..1}.tx_item_payment_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
