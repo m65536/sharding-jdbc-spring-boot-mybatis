@@ -6,6 +6,7 @@ import com.mo.test.entity.OrderItem;
 import com.mo.test.entity.OrderItemExample;
 import com.mo.test.mapper.OrderItemMapper;
 import com.mo.test.mapper.OrderMapper;
+import com.mo.test.service.IOrderService;
 import com.mo.test.service.impl.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ import java.util.UUID;
 public class TesController {
 
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
     @Autowired
     private OrderMapper orderMapper;
     @Autowired
