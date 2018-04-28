@@ -23,6 +23,9 @@ public class OrderService implements IOrderService {
     @Autowired
     private OrderItemMapper orderItemMapper;
 
+    /**
+     * 保证所有相关业务update进入一个库
+     */
     @Override
     @Transactional
     public void testTransactional() {
@@ -34,15 +37,16 @@ public class OrderService implements IOrderService {
         order.setShardingKey(order.getMarketId() + "-" + order.getShopId());
         orderMapper.insert(order);
 
-        if (order.getId() > 0) {
-            throw new IllegalArgumentException("测试插入事务操");
-        }
+
         OrderItem orderItem = new OrderItem();
         orderItem.setShardingKey(order.getShardingKey());
         orderItem.setOrderId(order.getId());
         orderItem.setProductName(UUID.randomUUID().toString());
         orderItemMapper.insert(orderItem);
 
+        if (order.getId() > 0) {
+            throw new IllegalArgumentException("测试插入事务操");
+        }
     }
 
     @Override
