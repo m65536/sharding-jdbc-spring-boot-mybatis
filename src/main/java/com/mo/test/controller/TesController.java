@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -37,8 +36,8 @@ public class TesController {
         Order order = new Order();
         order.setCreateDate(new Date());
         order.setSerialNumber(UUID.randomUUID().toString());
-        order.setMarketId(getCode(6));
-        order.setShopId(getCode(6));
+        order.setMarketId(orderService.getCode(6));
+        order.setShopId(orderService.getCode(6));
         order.setShardingKey(order.getMarketId() + "-" + order.getShopId());
         orderMapper.insert(order);
 
@@ -50,6 +49,15 @@ public class TesController {
 
 
         return order.getId() + "";
+    }
+
+
+    @RequestMapping(value = "/tc", method = RequestMethod.GET)
+    public String testTransactional() {
+
+        orderService.testTransactional();
+
+        return "OK";
     }
 
 
@@ -81,12 +89,5 @@ public class TesController {
         return orderItemMapper.selectByExample(orderItemExample);
     }
 
-    public String getCode(int length) {
-        Random random = new Random();
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            result.append(random.nextInt(10));
-        }
-        return result.toString();
-    }
+
 }
