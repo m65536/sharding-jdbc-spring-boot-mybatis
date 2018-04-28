@@ -199,6 +199,7 @@
             <artifactId>sharding-jdbc-core-spring-namespace</artifactId>
             <version>${latest.release.version}</version>
         </dependency>
+
     </dependencies>
 
 

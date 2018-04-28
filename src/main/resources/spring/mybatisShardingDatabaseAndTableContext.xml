@@ -14,6 +14,7 @@
                         http://shardingjdbc.io/schema/shardingjdbc/sharding/sharding.xsd">
     <context:component-scan base-package="com.mo.test" />
 
+    <!--<context:property-placeholder location="classpath:conf/rdb/conf.properties" ignore-unresolvable="true" />-->
     <context:property-placeholder location="classpath:spring" ignore-unresolvable="true" />
 
 
@@ -36,14 +37,22 @@
     <sharding:standard-strategy id="databaseShardingStrategy" sharding-column="sharding_key" precise-algorithm-class="com.mo.test.sharding.PreciseDatabaseShardingAlgorithm"/>
     <sharding:standard-strategy id="tableShardingStrategy" sharding-column="sharding_key" precise-algorithm-class="com.mo.test.sharding.PreciseTableShardingAlgorithm"/>
 
+
     <sharding:data-source id="shardingDataSource">
-        <sharding:sharding-rule data-source-names="demo_ds_master_0, demo_ds_master_1">
+        <sharding:sharding-rule data-source-names="demo_ds_master_0,demo_ds_master_1" default-data-source-name="demo_ds_master_0">
             <sharding:table-rules>
                 <sharding:table-rule logic-table="t_order" actual-data-nodes="demo_ds_master_${0..1}.t_order_${0..1}" database-strategy-ref="databaseShardingStrategy"  table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
                 <sharding:table-rule logic-table="t_order_item" actual-data-nodes="demo_ds_master_${0..1}.t_order_item_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column="id" />
             </sharding:table-rules>
+            <sharding:binding-table-rules>
+                <sharding:binding-table-rule logic-tables="t_order, t_order_item" />
+            </sharding:binding-table-rules>
         </sharding:sharding-rule>
+        <sharding:props>
+            <prop key="sql.show">true</prop>
+        </sharding:props>
     </sharding:data-source>
+
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="shardingDataSource" />
