@@ -14,6 +14,8 @@
     </appender>
 
     <logger name="com" level="DEBUG" />
+    <logger name="io.shardingjdbc" level="DEBUG" />
+    <!--<logger name="org" level="DEBUG"/>-->
 
     <root>
         <level value="INFO" />

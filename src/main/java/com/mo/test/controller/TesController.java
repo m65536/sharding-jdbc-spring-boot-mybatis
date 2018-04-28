@@ -52,6 +52,13 @@ public class TesController {
         return order.getId() + "";
     }
 
+
+    @RequestMapping(value = "/select/order/all", method = RequestMethod.GET)
+    public List<Order> selectOrderAll() {
+        OrderExample orderExample = new OrderExample();
+        return orderMapper.selectByExample(orderExample);
+    }
+
     @RequestMapping(value = "/select/order", method = RequestMethod.GET)
     public List<Order> selectOrder(@RequestParam(value = "id") Long id) {
         OrderExample orderExample = new OrderExample();
