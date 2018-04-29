@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Order(value = Integer.MAX_VALUE)
-public class ShardingMasterHintAop {
-    @Pointcut("@annotation(ShardingMasterHint)")
+public class ShardingHintAop {
+    @Pointcut("@annotation(ShardingHint)")
     public void hint(){
 
     }

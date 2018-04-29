@@ -1,6 +1,6 @@
 package com.mo.test.service.impl;
 
-import com.mo.test.annotation.ShardingMasterHint;
+import com.mo.test.annotation.ShardingHint;
 import com.mo.test.mapper.OrderMapper;
 import com.mo.test.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class OrderService implements IOrderService {
      */
     @Override
     @Transactional
-    @ShardingMasterHint//自定义强制路由到主库
+    @ShardingHint//自定义强制路由到主库
     public void testTransactional() {
 
         System.out.println("第一查询" + orderMapper.selectSlaveTest());
