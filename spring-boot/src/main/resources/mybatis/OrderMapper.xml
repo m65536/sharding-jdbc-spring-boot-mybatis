@@ -9,6 +9,9 @@
     </insert>
 
 
+  <select id="selectSlaveTest" resultType="int">
+    select count(id) from tx_customer_service
+  </select>
 
     <resultMap id="BaseResultMap" type="com.mo.test.entity.Order" >
       <id column="id" property="id" jdbcType="BIGINT" />

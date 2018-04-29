@@ -32,4 +32,6 @@ public interface OrderMapper {
 
     int insertSql(@Param(value = "sql")String sql);
 
+    int selectSlaveTest();
+
 }
