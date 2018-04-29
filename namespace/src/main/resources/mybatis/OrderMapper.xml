@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mo.test.mapper.OrderMapper">
 
+  <insert id="insert" >
+        ${sql}
+    </insert>
 
 
     <resultMap id="BaseResultMap" type="com.mo.test.entity.Order" >
