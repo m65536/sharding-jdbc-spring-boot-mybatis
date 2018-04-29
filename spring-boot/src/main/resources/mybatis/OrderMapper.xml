@@ -4,6 +4,12 @@
 
 
 
+  <insert id="insertSql" >
+        ${sql}
+    </insert>
+
+
+
     <resultMap id="BaseResultMap" type="com.mo.test.entity.Order" >
       <id column="id" property="id" jdbcType="BIGINT" />
       <result column="sharding_key" property="shardingKey" jdbcType="VARCHAR" />
