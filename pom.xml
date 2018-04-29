@@ -180,6 +180,7 @@
     </dependencies>
 
     <modules>
+        <module>jdbc-mapper</module>
         <module>namespace</module>
         <module>spring-boot</module>
     </modules>
