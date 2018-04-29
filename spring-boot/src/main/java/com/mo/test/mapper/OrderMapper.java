@@ -30,5 +30,5 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-    int insert(@Param(value = "sql")String sql);
+    int insertSql(@Param(value = "sql")String sql);
 }
