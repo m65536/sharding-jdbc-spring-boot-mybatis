@@ -34,7 +34,7 @@ import java.util.*;
 @Configuration
 @EnableTransactionManagement//开启事务
 //@MapperScan("com.chinaredstar.ordercenter.mapper")
-@ImportResource({"classpath:spring/*.xml"})
+@MapperScan("com.mo.test.mapper")
 public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceMaster0() {
         BasicDataSource result = new BasicDataSource();
