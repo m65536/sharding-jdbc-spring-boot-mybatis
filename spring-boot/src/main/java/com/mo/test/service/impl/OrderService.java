@@ -30,7 +30,7 @@ public class OrderService implements IOrderService {
         int rs = orderMapper.insertSql(test);
 
         if (1 == rs) {
-            throw new IllegalArgumentException("11111");
+//            throw new IllegalArgumentException("11111");
         }
 
 
