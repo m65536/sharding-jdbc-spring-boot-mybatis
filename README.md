@@ -6,6 +6,8 @@
 * http://localhost:8081/test/select/order?id=196685549572980736
 
 
+## 推荐spring-boot java方式实现
+ DataSourceShardingAndSlaveConfig分库分表主从，支撑同一个datasource事务（@Transactional）,支持强制路由到主库（@ShardingMasterHint）
 
 ## 常见问题
 #### io.shardingjdbc.core.exception.ShardingJdbcException: Parameter `null` should extends Comparable for sharding value.
