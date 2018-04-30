@@ -32,7 +32,6 @@ import java.util.*;
 //@MapperScan("com.chinaredstar.ordercenter.mapper")
 //@MapperScan("com.mo.test.mapper")
 public class DataSourceShardingConfig {
-    @Bean(name = "tx_order_master_0")
     public DataSource dataSourceMaster0() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
@@ -43,7 +42,6 @@ public class DataSourceShardingConfig {
     }
 
 
-    @Bean(name = "tx_order_master_1")
     public DataSource dataSourceMaster1() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
