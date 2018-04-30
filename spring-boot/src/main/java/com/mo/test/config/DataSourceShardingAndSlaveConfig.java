@@ -1,11 +1,13 @@
 package com.mo.test.config;
 
+import com.mo.test.sharding.DatabaseComplexKeysShardingAlgorithm;
 import com.mo.test.sharding.PreciseDatabaseShardingAlgorithm;
 import com.mo.test.sharding.PreciseTableShardingAlgorithm;
 import io.shardingjdbc.core.api.ShardingDataSourceFactory;
 import io.shardingjdbc.core.api.config.MasterSlaveRuleConfiguration;
 import io.shardingjdbc.core.api.config.ShardingRuleConfiguration;
 import io.shardingjdbc.core.api.config.TableRuleConfiguration;
+import io.shardingjdbc.core.api.config.strategy.ComplexShardingStrategyConfiguration;
 import io.shardingjdbc.core.api.config.strategy.StandardShardingStrategyConfiguration;
 import io.shardingjdbc.core.constant.ShardingPropertiesConstant;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -110,8 +112,8 @@ public class DataSourceShardingAndSlaveConfig {
 
 
         shardingRuleConfig.getBindingTableGroups().add(SHARDING_TABELS + "," + INDEP_TABELS);
-        shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", PreciseDatabaseShardingAlgorithm.class.getName()));
-        shardingRuleConfig.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", PreciseTableShardingAlgorithm.class.getName()));
+        shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new ComplexShardingStrategyConfiguration("id,order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
+        shardingRuleConfig.setDefaultTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("id,order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
 
 
         Properties props = new Properties();
