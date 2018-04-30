@@ -1,14 +1,13 @@
 package com.mo.test.config;
 
+import com.mo.test.sharding.CommonTabelComplexKeysShardingAlgorithm;
 import com.mo.test.sharding.DatabaseComplexKeysShardingAlgorithm;
-import com.mo.test.sharding.PreciseDatabaseShardingAlgorithm;
-import com.mo.test.sharding.PreciseTableShardingAlgorithm;
+import com.mo.test.sharding.TxOrderComplexKeysShardingAlgorithm;
 import io.shardingjdbc.core.api.ShardingDataSourceFactory;
 import io.shardingjdbc.core.api.config.MasterSlaveRuleConfiguration;
 import io.shardingjdbc.core.api.config.ShardingRuleConfiguration;
 import io.shardingjdbc.core.api.config.TableRuleConfiguration;
 import io.shardingjdbc.core.api.config.strategy.ComplexShardingStrategyConfiguration;
-import io.shardingjdbc.core.api.config.strategy.StandardShardingStrategyConfiguration;
 import io.shardingjdbc.core.constant.ShardingPropertiesConstant;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,7 +16,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -89,11 +87,11 @@ public class DataSourceShardingAndSlaveConfig {
 
     @Bean(name = "sahrdingDataSource")
     public DataSource getShardingDataSource() throws SQLException, IOException {
-
-
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
-        shardingRuleConfig.setDefaultDataSourceName("tx_order_master_0");
+
+        //表配置绑定
         shardingRuleConfig.getTableRuleConfigs().addAll(getTableRuleConfigurations());
+        shardingRuleConfig.getBindingTableGroups().add(SHARDING_TABELS + "," + INDEP_TABELS);
 
 
         // 构建读写分离配置
@@ -111,11 +109,12 @@ public class DataSourceShardingAndSlaveConfig {
         shardingRuleConfig.getMasterSlaveRuleConfigs().add(masterSlaveRuleConfig1);
 
 
-        shardingRuleConfig.getBindingTableGroups().add(SHARDING_TABELS + "," + INDEP_TABELS);
+        //默认配置
+        shardingRuleConfig.setDefaultDataSourceName("tx_order_master_0");
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new ComplexShardingStrategyConfiguration("id,order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
-        shardingRuleConfig.setDefaultTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("id,order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
+        shardingRuleConfig.setDefaultTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
 
-
+        //属性设置
         Properties props = new Properties();
         props.setProperty(ShardingPropertiesConstant.SQL_SHOW.getKey(), "true");
 
@@ -149,8 +148,13 @@ public class DataSourceShardingAndSlaveConfig {
             TableRuleConfiguration table = new TableRuleConfiguration();
             table.setLogicTable(s);
             table.setActualDataNodes("ds_${0..1}." + s + "_${[0, 1]}");
+
+            table.setDatabaseShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
             if (!"tx_order".equals(s)) {
                 table.setKeyGeneratorColumnName("id");
+                table.setTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", TxOrderComplexKeysShardingAlgorithm.class.getName()));
+            } else {
+                table.setTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", CommonTabelComplexKeysShardingAlgorithm.class.getName()));
             }
             tableRuleConfigurations.add(table);
         }
@@ -159,6 +163,8 @@ public class DataSourceShardingAndSlaveConfig {
             table.setLogicTable(s);
             table.setActualDataNodes("ds_${0}." + s + "_${[0]}");
             table.setKeyGeneratorColumnName("id");
+            table.setDatabaseShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
+            table.setTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", CommonTabelComplexKeysShardingAlgorithm.class.getName()));
             tableRuleConfigurations.add(table);
         }
 
