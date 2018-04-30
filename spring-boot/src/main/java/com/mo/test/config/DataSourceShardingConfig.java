@@ -30,7 +30,7 @@ import java.util.*;
 //@Configuration
 //@EnableTransactionManagement//开启事务
 //@MapperScan("com.chinaredstar.ordercenter.mapper")
-@MapperScan("com.mo.test.mapper")
+//@MapperScan("com.mo.test.mapper")
 public class DataSourceShardingConfig {
     @Bean(name = "tx_order_master_0")
     public DataSource dataSourceMaster0() {
