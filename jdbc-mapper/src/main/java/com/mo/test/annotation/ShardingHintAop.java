@@ -30,7 +30,7 @@ public class ShardingHintAop {
 
     @After("hint()")
     public void clear(JoinPoint Point) {
-        HintManagerHolder.get().close();
+        HintManagerHolder.clear();
     }
 
 
