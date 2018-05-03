@@ -39,7 +39,7 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceMaster0() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_master_0");
+        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_0");
         result.setUsername("root");
         result.setPassword("password");
         return result;
@@ -49,7 +49,7 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceMaster1() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_master_1");
+        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_1");
         result.setUsername("root");
         result.setPassword("password");
         return result;
@@ -59,9 +59,9 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceSlave0() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_slave_0");
+        result.setUrl("jdbc:mysql://192.168.226.194:3306/tx_order_1");
         result.setUsername("root");
-        result.setPassword("password");
+        result.setPassword("Password@123");
         return result;
     }
 
@@ -69,9 +69,9 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceSlave1() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_slave_1");
+        result.setUrl("jdbc:mysql://192.168.226.194:3306/tx_order_1");
         result.setUsername("root");
-        result.setPassword("password");
+        result.setPassword("Password@123");
         return result;
     }
 
