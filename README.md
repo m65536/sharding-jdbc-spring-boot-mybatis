@@ -32,8 +32,8 @@ sync-binlog=1
 # 1天时间自动清理二进制日志
 expire_logs_days=1
 # 需要同步的数据库 
-binlog-do-db=tx_order_master_0
-binlog-do-db=tx_order_master_1
+binlog-do-db=tx_order_0
+binlog-do-db=tx_order_1
 # 不需要同步的数据库
 binlog-ignore-db=mysql   
 binlog-ignore-db=information_schema 
