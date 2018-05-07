@@ -3,6 +3,10 @@
 
 ## 建库建表脚本
 
+
+## MyBatis生成
+MyCommentGenerator
+
 ## restful测试接口
 * http://localhost:8081/test/insert
 * http://localhost:8081/test/select/order?id=196685549572980736
