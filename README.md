@@ -8,21 +8,16 @@
 * mybatis自动生成方法入口MyBatisCodeGenerator.java
 * 配置文件MBG_configuration.xml，修改“D:\Workspace\mine\sharding-jdbc-test\”为自己的项目路径
 
-
-## 推荐spring-boot java方式实现
- DataSourceShardingAndSlaveConfig分库分表主从，支撑同一个datasource事务（@Transactional）,支持强制路由到主库（@ShardingHint）
- 
- 
-## @ShardingHint要结合@Transactional使用才能保证方法内部的所有sql落到主库，使用同一个collection
+## 强制主库
+ @ShardingHint要结合@Transactional使用才能保证方法内部的所有sql落到主库，使用同一个collection
 
   HintManager hintManager = HintManager.getInstance();只能够保证在这个线程内部，调用的过程中，如果collection（SpringManagedTransaction）关闭掉会清理掉theradlocal中的hintManager对象，所以不使用@Transactional只是保证了第一个sql走了主库，后续的sql只会走到从库去。
-
 
 
 ## MySql主从配置
 * 参考
  [mysql 5.7 主从同步配置](https://blog.csdn.net/natahew/article/details/71122569)
- 
+
 * 主库
 ````$xslt
 log-bin="D:\data\mysql"
