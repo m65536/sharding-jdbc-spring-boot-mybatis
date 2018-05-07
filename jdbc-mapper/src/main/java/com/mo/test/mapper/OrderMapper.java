@@ -2,17 +2,15 @@ package com.mo.test.mapper;
 
 import com.mo.test.entity.Order;
 import com.mo.test.entity.OrderExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 public interface OrderMapper {
-
     int countByExample(OrderExample example);
 
     int deleteByExample(OrderExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Long orderId);
 
     int insert(Order record);
 
@@ -20,7 +18,7 @@ public interface OrderMapper {
 
     List<Order> selectByExample(OrderExample example);
 
-    Order selectByPrimaryKey(Long id);
+    Order selectByPrimaryKey(Long orderId);
 
     int updateByExampleSelective(@Param("record") Order record, @Param("example") OrderExample example);
 
@@ -29,9 +27,4 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
-
-    int insertSql(@Param(value = "sql")String sql);
-
-    int selectSlaveTest();
-
 }

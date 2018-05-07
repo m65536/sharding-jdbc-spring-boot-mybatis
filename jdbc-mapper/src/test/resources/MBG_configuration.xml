@@ -9,48 +9,32 @@
         </commentGenerator>
         <!-- 生发环境数据库配置:修改配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://db201.dev.rs.com:3306/tx_order?useSSL=false"
-                        userId="zyp" password="zyp_user">
+                        connectionURL="jdbc:mysql://localhost:3306/db_order_0?useSSL=false"
+                        userId="root" password="password">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--targetProject请使用绝对路径-->
-        <javaModelGenerator targetPackage="com.mo.test.model"
-                            targetProject="D:\Workspace\ordermastere\p-trade\p-trade-oc\p-trade-oc-jdbc\src\main\java">
+        <javaModelGenerator targetPackage="com.mo.test.entity"
+                            targetProject="D:\Workspace\mine\sharding-jdbc-test\jdbc-mapper\src\main\java">
             <property name="enableSubPackages" value="true"/>
 
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="sqlmapper\base"
-                         targetProject="D:\Workspace\ordermastere\p-trade\p-trade-oc\p-trade-oc-jdbc\src\main\resources">
+        <sqlMapGenerator targetPackage="mybatis"
+                         targetProject="D:\Workspace\mine\sharding-jdbc-test\jdbc-mapper\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mo.test.mapper.base"
-                             targetProject="D:\Workspace\ordermastere\p-trade\p-trade-oc\p-trade-oc-jdbc\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mo.test.mapper"
+                             targetProject="D:\Workspace\mine\sharding-jdbc-test\jdbc-mapper\src\main\java">
 
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <!--
 
 
-        <table tableName="tx_item_payment"
-               domainObjectName="ItemPayment"
-               enableCountByExample="true"
-               enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="true"
-               enableInsert="true" enableUpdateByPrimaryKey="true"
-               enableDeleteByPrimaryKey="true">
-            <property name="useActualColumnNames" value="false"/>
-
-            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR"/>
-        </table>
-
-
-          -->
-
-        <table tableName="tx_item_payment"
-               domainObjectName="ItemPayment"
+        <table tableName="t_order_item"
+               domainObjectName="OrderItem"
                enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="true"

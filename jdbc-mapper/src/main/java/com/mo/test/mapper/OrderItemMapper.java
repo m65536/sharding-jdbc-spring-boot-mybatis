@@ -2,17 +2,15 @@ package com.mo.test.mapper;
 
 import com.mo.test.entity.OrderItem;
 import com.mo.test.entity.OrderItemExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 public interface OrderItemMapper {
-
     int countByExample(OrderItemExample example);
 
     int deleteByExample(OrderItemExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Long orderItemId);
 
     int insert(OrderItem record);
 
@@ -20,7 +18,7 @@ public interface OrderItemMapper {
 
     List<OrderItem> selectByExample(OrderItemExample example);
 
-    OrderItem selectByPrimaryKey(Long id);
+    OrderItem selectByPrimaryKey(Long orderItemId);
 
     int updateByExampleSelective(@Param("record") OrderItem record, @Param("example") OrderItemExample example);
 
