@@ -1,7 +1,9 @@
 ## 官方文档
 * [Sharding jdbc](http://shardingjdbc.io/docs_cn/01-start/code-demo/)
 
-## restful
+## 建库建表脚本
+
+## restful测试接口
 * http://localhost:8081/test/insert
 * http://localhost:8081/test/select/order?id=196685549572980736
 
