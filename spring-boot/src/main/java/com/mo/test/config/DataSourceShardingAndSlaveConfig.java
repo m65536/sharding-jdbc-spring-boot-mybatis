@@ -39,7 +39,7 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceMaster0() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_0");
+        result.setUrl("jdbc:mysql://192.168.226.237:3306/db_order_0");
         result.setUsername("root");
         result.setPassword("password");
         return result;
@@ -49,7 +49,7 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceMaster1() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.237:3306/tx_order_1");
+        result.setUrl("jdbc:mysql://192.168.226.237:3306/db_order_1");
         result.setUsername("root");
         result.setPassword("password");
         return result;
@@ -59,7 +59,7 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceSlave0() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.194:3306/tx_order_1");
+        result.setUrl("jdbc:mysql://192.168.226.194:3306/db_order_1");
         result.setUsername("root");
         result.setPassword("Password@123");
         return result;
@@ -69,7 +69,7 @@ public class DataSourceShardingAndSlaveConfig {
     public DataSource dataSourceSlave1() {
         BasicDataSource result = new BasicDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setUrl("jdbc:mysql://192.168.226.194:3306/tx_order_1");
+        result.setUrl("jdbc:mysql://192.168.226.194:3306/db_order_1");
         result.setUsername("root");
         result.setPassword("Password@123");
         return result;
@@ -172,7 +172,7 @@ public class DataSourceShardingAndSlaveConfig {
         return tableRuleConfigurations;
     }
 
-    private static final String SHARDING_TABELS = "tx_customer_service,tx_item_payment,tx_item_promotion,tx_operation_history,tx_order,tx_order_addition,tx_order_extend,tx_order_item,tx_order_reviewed,tx_order_status_version,tx_order_worker,tx_payment_line,tx_payment_line_detail,tx_promotion,tx_promotion_job,tx_refund_bill,tx_attachment";
-    private static final String INDEP_TABELS = "tx_cancel_payment_log,tx_config,tx_return_detail,tx_return_info,tx_item_attributes,tx_customer_service_status_version";
+    private static final String SHARDING_TABELS = "t_order,t_order_item";
+    private static final String INDEP_TABELS = "";
 
 }

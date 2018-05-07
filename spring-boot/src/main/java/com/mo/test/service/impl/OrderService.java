@@ -25,7 +25,7 @@ public class OrderService implements IOrderService {
     @ShardingHint//自定义强制路由到主库
     public void testTransactional() {
 
-        System.out.println("第一查询" + orderMapper.selectSlaveTest());
+/*        System.out.println("第一查询" + orderMapper.selectSlaveTest());
 
         String test = "INSERT INTO tx_customer_service (sharding_key,order_id, refund_order_id, refund_reason, refund_reason_detail, refund_amount, customer_service_status, merchant_confirm_time, last_merchant_confirm_time, user_confirm_time, last_user_confirm_time, apply_count, customer_service_type, create_time, create_user_id, last_update_time, last_update_user_id, delete_flag, return_goods_type, return_goods_way, merchant_audit_reason, return_deliver_status) VALUES ('1-1',9, 10, '7天无理由退换货', '退货退款不想买了测试', 0.01, 6, '2017-09-06 15:41:33', '2016-12-01 20:25:01', '2017-09-06 15:41:33', '2016-12-01 20:25:01', 2, 1, '2016-10-20 17:27:14', null, '2017-09-06 15:41:33', '1163fc18-f050-4d34-b18b-a0fd64b047a6', 0, 2, 3, null, 0);";
 
@@ -37,7 +37,7 @@ public class OrderService implements IOrderService {
 //            throw new IllegalArgumentException("11111");
         }
 
-        System.out.println("第二查询" + orderMapper.selectSlaveTest());
+        System.out.println("第二查询" + orderMapper.selectSlaveTest());*/
 
     }
 
