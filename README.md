@@ -5,7 +5,8 @@
 
 
 ## MyBatis生成
-MyCommentGenerator
+* mybatis自动生成方法入口MyBatisCodeGenerator.java
+* 配置文件MBG_configuration.xml，修改“D:\Workspace\mine\sharding-jdbc-test\”为自己的项目路径
 
 ## restful测试接口
 * http://localhost:8081/test/insert

@@ -33,7 +33,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="t_order_item"
+        <table tableName="t_order_item_0"
                domainObjectName="OrderItem"
                enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true"
