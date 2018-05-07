@@ -1,4 +1,4 @@
-package com.mo.test.mapper;
+package com.mo.test.mapper.mybatisgenerator;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;

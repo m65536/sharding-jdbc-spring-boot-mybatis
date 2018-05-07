@@ -1,4 +1,4 @@
-package com.mo.test.mapper;
+package com.mo.test.mapper.mybatisgenerator;
 
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;

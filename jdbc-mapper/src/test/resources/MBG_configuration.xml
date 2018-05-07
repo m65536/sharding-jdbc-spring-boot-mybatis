@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="MySQLTables" targetRuntime="MyBatis3">
-        <plugin type="com.mo.test.mapper.MySQLGeneratorPrimaryKeyPlugin"></plugin>
-        <commentGenerator type="com.mo.test.mapper.MyCommentGenerator">
+        <plugin type="com.mo.test.mapper.mybatisgenerator.MySQLGeneratorPrimaryKeyPlugin"></plugin>
+        <commentGenerator type="com.mo.test.mapper.mybatisgenerator.MyCommentGenerator">
         </commentGenerator>
         <!-- 生发环境数据库配置:修改配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
