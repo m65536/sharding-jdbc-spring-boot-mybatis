@@ -2,15 +2,11 @@
 * [Sharding jdbc](http://shardingjdbc.io/docs_cn/01-start/code-demo/)
 
 ## 建库建表脚本
-
+> 脚本文件位置在”jdbc-mapper\src\main\resources\script“，在主从库都执行auto_db.sql。
 
 ## MyBatis生成
 * mybatis自动生成方法入口MyBatisCodeGenerator.java
 * 配置文件MBG_configuration.xml，修改“D:\Workspace\mine\sharding-jdbc-test\”为自己的项目路径
-
-## restful测试接口
-* http://localhost:8081/test/insert
-* http://localhost:8081/test/select/order?id=196685549572980736
 
 
 ## 推荐spring-boot java方式实现
@@ -24,6 +20,9 @@
 
 
 ## MySql主从配置
+* 参考
+ [mysql 5.7 主从同步配置](https://blog.csdn.net/natahew/article/details/71122569)
+ 
 * 主库
 ````$xslt
 log-bin="D:\data\mysql"
@@ -32,17 +31,18 @@ sync-binlog=1
 # 1天时间自动清理二进制日志
 expire_logs_days=1
 # 需要同步的数据库 
-binlog-do-db=tx_order_0
-binlog-do-db=tx_order_1
+binlog-do-db=db_order_0
+binlog-do-db=db_order_1
 # 不需要同步的数据库
 binlog-ignore-db=mysql   
 binlog-ignore-db=information_schema 
 binlog-ignore-db=performance_schema
 ````
+
 * 从库
 ````$xslt
-replicate_wild_do_table=tx_order_0.%
-replicate_wild_do_table=tx_order_1.%
+replicate_wild_do_table=db_order_0.%
+replicate_wild_do_table=db_order_1.%
 
 replicate_wild_ignore_table=mysql.%
 replicate_wild_ignore_table=information_schema.%
@@ -53,6 +53,7 @@ expire_logs_days=1
 # Server Id.
 server-id=5
 ````
+
 * 启动从库
 ````$xslt
 stop slave ;
@@ -71,6 +72,9 @@ start slave ;
 #### ShardingPreparedStatement route
 
 
+## RESTful测试接口
+* http://localhost:8081/test/insert
+* http://localhost:8081/test/select/order?id=196685549572980736
 
 ## 参考
 * [Sharding-JDBC 源码分析](https://www.iocoder.cn/categories/Sharding-JDBC/)
