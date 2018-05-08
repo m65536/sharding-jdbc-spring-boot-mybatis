@@ -1,6 +1,7 @@
 package com.mo.test.service.impl;
 
 import com.mo.test.entity.Order;
+import com.mo.test.entity.OrderItem;
 import com.mo.test.mapper.OrderItemMapper;
 import com.mo.test.mapper.OrderMapper;
 import com.mo.test.service.IOrderService;
@@ -29,8 +30,17 @@ public class OrderService implements IOrderService {
     @Override
     public Long insertOrder() {
         Order order = new Order();
+        order.setStatus("1");
+        order.setUserId(Integer.valueOf(getCode(4)));
+        orderMapper.insert(order);
 
-        return null;
+        OrderItem orderItem = new OrderItem();
+        orderItem.setOrderId(order.getOrderId());
+        orderItem.setUserId(order.getUserId());
+
+        orderItemMapper.insert(orderItem);
+
+        return order.getOrderId();
     }
 
     @Override
