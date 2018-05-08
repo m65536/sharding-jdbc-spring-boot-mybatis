@@ -5,17 +5,17 @@ import java.util.List;
 
 public class OrderItemExample {
     /**
-     * t_order_item
+     * t_order_item_0
      */
     protected String orderByClause;
 
     /**
-     * t_order_item
+     * t_order_item_0
      */
     protected boolean distinct;
 
     /**
-     * t_order_item
+     * t_order_item_0
      */
     protected List<Criteria> oredCriteria;
 
@@ -73,7 +73,7 @@ public class OrderItemExample {
     }
 
     /**
-     * t_order_item 2018-05-07
+     * t_order_item_0 2018-05-08
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -298,7 +298,7 @@ public class OrderItemExample {
     }
 
     /**
-     * t_order_item
+     * t_order_item_0
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -308,7 +308,7 @@ public class OrderItemExample {
     }
 
     /**
-     * t_order_item 2018-05-07
+     * t_order_item_0 2018-05-08
      */
     public static class Criterion {
         private String condition;
