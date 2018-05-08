@@ -1,6 +1,7 @@
 package com.mo.test.service.impl;
 
-import com.mo.test.annotation.ShardingHint;
+import com.mo.test.entity.Order;
+import com.mo.test.mapper.OrderItemMapper;
 import com.mo.test.mapper.OrderMapper;
 import com.mo.test.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,34 @@ import java.util.Random;
 public class OrderService implements IOrderService {
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private OrderItemMapper orderItemMapper;
 
-    /**
-     * 事务测试
-     */
     @Override
     @Transactional
-    @ShardingHint
     public void testTransactional() {
 
+    }
+
+    @Override
+    public Long insertOrder() {
+        Order order = new Order();
+
+        return null;
+    }
+
+    @Override
+    public int updateOrder() {
+        return 0;
+    }
+
+    @Override
+    public int deleteOrder() {
+        return 0;
+    }
+
+    @Override
+    public void testHintManager() {
 
     }
 
@@ -37,4 +57,5 @@ public class OrderService implements IOrderService {
         }
         return result.toString();
     }
+
 }
