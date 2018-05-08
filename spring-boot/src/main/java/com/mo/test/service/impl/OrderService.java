@@ -24,7 +24,20 @@ public class OrderService implements IOrderService {
     @Override
     @Transactional
     public void testTransactional() {
+        Order order = new Order();
+        order.setStatus("2");
+        order.setUserId(Integer.valueOf(getCode(4)));
+        orderMapper.insert(order);
 
+        OrderItem orderItem = new OrderItem();
+        orderItem.setOrderId(order.getOrderId());
+        orderItem.setUserId(order.getUserId());
+
+        orderItemMapper.insert(orderItem);
+
+        if (order.getOrderId() > 1) {
+            throw new IllegalArgumentException(order.getOrderId().longValue() + "");
+        }
     }
 
     @Override
