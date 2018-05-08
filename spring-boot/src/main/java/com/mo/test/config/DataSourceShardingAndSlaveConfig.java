@@ -1,13 +1,14 @@
 package com.mo.test.config;
 
-import com.mo.test.sharding.CommonTabelComplexKeysShardingAlgorithm;
 import com.mo.test.sharding.DatabaseComplexKeysShardingAlgorithm;
-import com.mo.test.sharding.TxOrderComplexKeysShardingAlgorithm;
+import com.mo.test.sharding.ModuloShardingDatabaseAlgorithm;
+import com.mo.test.sharding.ModuloShardingTableAlgorithm;
 import io.shardingjdbc.core.api.ShardingDataSourceFactory;
 import io.shardingjdbc.core.api.config.MasterSlaveRuleConfiguration;
 import io.shardingjdbc.core.api.config.ShardingRuleConfiguration;
 import io.shardingjdbc.core.api.config.TableRuleConfiguration;
 import io.shardingjdbc.core.api.config.strategy.ComplexShardingStrategyConfiguration;
+import io.shardingjdbc.core.api.config.strategy.StandardShardingStrategyConfiguration;
 import io.shardingjdbc.core.constant.ShardingPropertiesConstant;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -91,7 +92,7 @@ public class DataSourceShardingAndSlaveConfig {
 
         //表配置绑定
         shardingRuleConfig.getTableRuleConfigs().addAll(getTableRuleConfigurations());
-        shardingRuleConfig.getBindingTableGroups().add(SHARDING_TABELS + "," + INDEP_TABELS);
+        shardingRuleConfig.getBindingTableGroups().add(SHARDING_TABELS);
 
 
         // 构建读写分离配置
@@ -143,28 +144,13 @@ public class DataSourceShardingAndSlaveConfig {
 
     private List<TableRuleConfiguration> getTableRuleConfigurations() {
         List<TableRuleConfiguration> tableRuleConfigurations = new ArrayList<>();
-
         for (String s : SHARDING_TABELS.split(",")) {
-            TableRuleConfiguration table = new TableRuleConfiguration();
-            table.setLogicTable(s);
-            table.setActualDataNodes("ds_${0..1}." + s + "_${[0, 1]}");
-
-            table.setDatabaseShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
-            if (!"tx_order".equals(s)) {
-                table.setKeyGeneratorColumnName("id");
-                table.setTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", TxOrderComplexKeysShardingAlgorithm.class.getName()));
-            } else {
-                table.setTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", CommonTabelComplexKeysShardingAlgorithm.class.getName()));
-            }
-            tableRuleConfigurations.add(table);
-        }
-        for (String s : INDEP_TABELS.split(",")) {
             TableRuleConfiguration table = new TableRuleConfiguration();
             table.setLogicTable(s);
             table.setActualDataNodes("ds_${0}." + s + "_${[0]}");
             table.setKeyGeneratorColumnName("id");
-            table.setDatabaseShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", DatabaseComplexKeysShardingAlgorithm.class.getName()));
-            table.setTableShardingStrategyConfig(new ComplexShardingStrategyConfiguration("order_id", CommonTabelComplexKeysShardingAlgorithm.class.getName()));
+            table.setDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("user_id", ModuloShardingDatabaseAlgorithm.class.getName()));
+            table.setTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("user_id", ModuloShardingTableAlgorithm.class.getName()));
             tableRuleConfigurations.add(table);
         }
 
@@ -173,6 +159,5 @@ public class DataSourceShardingAndSlaveConfig {
     }
 
     private static final String SHARDING_TABELS = "t_order,t_order_item";
-    private static final String INDEP_TABELS = "";
 
 }
