@@ -147,8 +147,14 @@ public class DataSourceShardingAndSlaveConfig {
         for (String s : SHARDING_TABELS.split(",")) {
             TableRuleConfiguration table = new TableRuleConfiguration();
             table.setLogicTable(s);
-            table.setActualDataNodes("ds_${0}." + s + "_${[0]}");
-            table.setKeyGeneratorColumnName("id");
+            table.setActualDataNodes("ds_${0..1}." + s + "_${[0, 1]}");
+            if("t_order".equals(s)){
+                table.setKeyGeneratorColumnName("order_id");
+            }else if("t_order_item".equals(s) ){
+                table.setKeyGeneratorColumnName("order_item_id");
+            }else {
+                table.setKeyGeneratorColumnName("id");
+            }
             table.setDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("user_id", ModuloShardingDatabaseAlgorithm.class.getName()));
             table.setTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("user_id", ModuloShardingTableAlgorithm.class.getName()));
             tableRuleConfigurations.add(table);
