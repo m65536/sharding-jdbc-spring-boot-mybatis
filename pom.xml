@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mo</groupId>
-    <artifactId>sharding-jdbc-test</artifactId>
+    <artifactId>sharding-jdbc-spring-boot-mybatis</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
