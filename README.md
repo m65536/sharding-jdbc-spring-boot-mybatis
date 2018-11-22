@@ -2,7 +2,7 @@
 * [Sharding jdbc](http://shardingjdbc.io/docs_cn/01-start/code-demo/)
 
 ## 建库建表脚本
-> 脚本文件位置在”jdbc-mapper\src\main\resources\script“，在主从库都执行auto_db.sql。
+> auto_db.sql
 
 ## MyBatis生成
 * mybatis自动生成方法入口MyBatisCodeGenerator.java
