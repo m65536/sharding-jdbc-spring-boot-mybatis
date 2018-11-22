@@ -70,17 +70,15 @@ public class OrderService implements IOrderService {
     public void testHintManager() {
 
     }
-
-    int a = 1;
+    
     @Override
     public String getCode(int length) {
-        return ++a + "";
-        /*Random random = new Random();
+        Random random = new Random();
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < length; i++) {
             result.append(random.nextInt(10));
         }
-        return result.toString();*/
+        return result.toString();
     }
 
 }
