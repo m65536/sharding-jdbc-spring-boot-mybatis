@@ -42,7 +42,7 @@ public class DataSourceShardingAndSlaveConfig {
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
         result.setUrl("jdbc:mysql://localhost:3306/db_order_0");
         result.setUsername("root");
-        result.setPassword("password");
+        result.setPassword("123456");
         return result;
     }
 
@@ -52,7 +52,7 @@ public class DataSourceShardingAndSlaveConfig {
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
         result.setUrl("jdbc:mysql://localhost:3306/db_order_1");
         result.setUsername("root");
-        result.setPassword("password");
+        result.setPassword("123456");
         return result;
     }
 
@@ -62,7 +62,7 @@ public class DataSourceShardingAndSlaveConfig {
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
         result.setUrl("jdbc:mysql://localhost:3307/db_order_1");
         result.setUsername("root");
-        result.setPassword("Password@123");
+        result.setPassword("123456");
         return result;
     }
 
@@ -72,7 +72,7 @@ public class DataSourceShardingAndSlaveConfig {
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
         result.setUrl("jdbc:mysql://localhost:3307/db_order_1");
         result.setUsername("root");
-        result.setPassword("Password@123");
+        result.setPassword("123456");
         return result;
     }
 
